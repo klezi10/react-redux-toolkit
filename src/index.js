@@ -19,3 +19,5 @@ root.render(
 /* You don't have to wrap the whole app in the provider.
 You could do it in nested components 
 but only the components that are wrapped in Provider will have access to Redux */
+
+// step 6 - in Counter component
