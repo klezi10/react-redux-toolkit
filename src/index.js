@@ -5,10 +5,13 @@ import { Provider } from "react-redux";
 
 import "./index.css";
 import App from "./App";
+// step 4 import store
+import store from "./store/index"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider>
+    // step 5 - set the store prop
+  <Provider store={store}>
     <App />
   </Provider>
 );
