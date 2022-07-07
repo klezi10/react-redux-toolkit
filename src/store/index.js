@@ -2,7 +2,7 @@
 
 import { legacy_createStore } from "redux";
 
-export default function counterReducer(state = { counter: 0 }, action) {
+function counterReducer(state = { counter: 0 }, action) {
   if (action.type === "increment") {
     return {
       counter: state.counter + 1,
@@ -19,3 +19,6 @@ export default function counterReducer(state = { counter: 0 }, action) {
 }
 
 const store = legacy_createStore(counterReducer);
+
+export default store;
+// make sure to export the store, not the component function
