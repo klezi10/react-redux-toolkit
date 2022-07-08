@@ -1,46 +1,32 @@
-// step 1 - create store
-
-import { legacy_createStore } from "redux";
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 const initialState = { counter: 0, showCounter: true };
 
-function counterReducer(state = initialState, action) {
-  if (action.type === "increment") {
-    return {
-      counter: state.counter + 1,
-      showCounter: state.showCounter,
-      /* make sure to add all states, even if no changes
-      otherwise showCounter will be undefined & create bugs
-      because we override the old state (not merge) */
-      // do not mutate the existing state in redux, override it instead
-    };
-  }
+export const counterSlice = createSlice({
+  //give it any name you want
+  name: "counter",
+  initialState, //also means initialState: initialState
+  reducers: {
+    increment(state) {
+      state.counter++;
+    },
+    decrement(state) {
+      state.counter--;
+    },
+    increase(state, action) {
+      state.counter = state.counter + action.payload;
+    },
+    toggleCounter(state) {
+      state.showCounter = !state.showCounter;
+    },
+  },
+});
 
-  if (action.type === "increase") {
-    return {
-      counter: state.counter + action.amount,
-      showCounter: state.showCounter,
-    };
-  }
-
-  if (action.type === "decrement") {
-    return {
-      counter: state.counter - 1,
-      showCounter: state.showCounter,
-    };
-  }
-
-  if (action.type === "toggle") {
-    return {
-      showCounter: !state.showCounter,
-      counter: state.counter,
-    };
-  }
-
-  return state;
-}
-
-const store = legacy_createStore(counterReducer);
+const store = configureStore({
+  reducer: counterSlice.reducer,
+  /* if you have a large code base, to combine all reducers:
+  reducer: { counter: counterSlice.reducer }, */
+});
 
 export default store;
-// make sure to export the store, not the component function
+// make sure to default export the store, not the component function
