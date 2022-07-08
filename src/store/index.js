@@ -1,4 +1,6 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
+/* redux toolkit is good for more complex applications, 
+to keep clean, short code, less prone to error */
 
 const initialState = { counter: 0, showCounter: true };
 
