@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 // useSelector is a custom component hook from redux
 // there's also a useStore but useSelector lets us select the part we want to use
 // if using class-based component, also add 'connect'
+import { counterActions } from "../store/index";
+// import the variable counterActions - for Redux toolkit
 import classes from "./Counter.module.css";
 
 const Counter = () => {
@@ -17,21 +19,22 @@ const Counter = () => {
   /* managing multiple states */
 
   const toggleCounterHandler = () => {
-    dispatch({ type: "toggle" });
+    dispatch(counterActions.toggleCounter());
   };
 
   function incrementHandler() {
-    dispatch({ type: "increment" });
+    dispatch(counterActions.increment());
   }
 
   function increaseHandler() {
     /* to increase by input of user, amount 5 is currently
     hardcoded but in the future to be changed */
-    dispatch({ type: "increase", amount: 5 });
+    dispatch(counterActions.increase(5)); // {type: SOME_UNIQUE_IDENTIFIER, payload: 5}
+    // payload is default in redux toolkit
   }
 
   function decrementHandler() {
-    dispatch({ type: "decrement" });
+    dispatch(counterActions.decrement());
   }
 
   return (
