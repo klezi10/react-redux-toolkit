@@ -10,7 +10,7 @@ function counterReducer(state = initialState, action) {
       counter: state.counter + 1,
       showCounter: state.showCounter,
       /* make sure to add all states, even if no changes
-      otherwise showCounter will be undefined & create an error
+      otherwise showCounter will be undefined & create bugs
       because we override the old state (not merge) */
       // do not mutate the existing state in redux, override it instead
     };
