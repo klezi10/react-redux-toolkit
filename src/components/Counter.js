@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 // useSelector is a custom component hook from redux
 // there's also a useStore but useSelector lets us select the part we want to use
 // if using class-based component, also add 'connect'
-import { counterActions } from "../store/index";
+import { counterActions } from "../store/counter";
 // import the variable counterActions - for Redux toolkit
 import classes from "./Counter.module.css";
 
