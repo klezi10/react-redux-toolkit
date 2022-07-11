@@ -1,13 +1,24 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
-/* redux toolkit is good for more complex applications, 
-to keep clean, short code, less prone to error */
 
-const initialState = { counter: 0, showCounter: true };
+const initialCounterState = { counter: 0, showCounter: true };
+const initialAuthState = { isAuthenticated: false };
+
+const authSlice = createSlice({
+  name: "auth",
+  initialState: initialAuthState,
+  reducers: {
+    login(state) {
+      state.isAuthenticated = true;
+    },
+    logout(state) {
+      state.isAuthenticated = false;
+    },
+  },
+});
 
 const counterSlice = createSlice({
-  //give it any name you want
   name: "counter",
-  initialState, //also means initialState: initialState
+  initialState: initialCounterState,
   reducers: {
     increment(state) {
       state.counter++;
@@ -24,16 +35,12 @@ const counterSlice = createSlice({
   },
 });
 
-/* tap into the actions object:
-counterSlice.actions.toggleCounter - for example */
-
 const store = configureStore({
-  reducer: counterSlice.reducer,
-  /* if you have a large code base, to combine all reducers:
-  reducer: { counter: counterSlice.reducer }, */
+  reducer: { counter: counterSlice.reducer, auth: authSlice.reducer },
 });
 
 export const counterActions = counterSlice.actions;
+export const authActions = authSlice.actions;
 
 export default store;
 // make sure to default export the store, not the component function

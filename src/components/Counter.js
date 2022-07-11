@@ -14,8 +14,8 @@ const Counter = () => {
   // step 7 - add useSelector to manage the state change
   // redux will set up a subscription to redux store for this component
   // so component will be updated and will receive the latest counter
-  const counter = useSelector((state) => state.counter);
-  const show = useSelector((state) => state.showCounter);
+  const counter = useSelector((state) => state.counter.counter);
+  const show = useSelector((state) => state.counter.showCounter);
   /* managing multiple states */
 
   const toggleCounterHandler = () => {
